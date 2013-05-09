@@ -31,10 +31,10 @@ setInterval(function() {
 		console.log('monitor error');
 		//console.log(err);
 	});
-	monitor.report({id: 'lisyoen', 
-		name: 'Simple Chatting', 
-		desc: 'Developed by lisyoen', 
-		url: 'http://lisyoen.dangsam.com',
+	monitor.report({id: 'mucikan', 
+		name: 'Mucikan Chatting', 
+		desc: 'Developed by nak', 
+		url: 'http://mucikan.dangsam.com',
 		count: count++
 	});
 }, 5000);
