@@ -40,6 +40,7 @@ setInterval(function() {
 }, 5000);
 
 io.sockets.on('connection', function (socket) {
+	// for index.html
 	socket.on('my other event', function (data) {
 		console.log(data);
 		socket.emit('my_message', data);
@@ -51,6 +52,7 @@ io.sockets.on('connection', function (socket) {
 		socket.emit('my_report', {users: 10, rooms: 3});
 	});
 	
+	// for admin.html
 	function echo_exec(cmd, callback) {
 		exec(cmd, function(err, stdout, stderr) {
 			if (err) {
