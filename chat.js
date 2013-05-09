@@ -32,7 +32,7 @@ setInterval(function() {
 		//console.log(err);
 	});
 	monitor.report({id: 'mucikan', 
-		name: 'Mucikan Chatting', 
+		name: 'Mucikan Chatting 2', 
 		desc: 'Developed by nak', 
 		url: 'http://mucikan.dangsam.com',
 		count: count++
