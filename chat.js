@@ -1,9 +1,9 @@
 // reference to http://socket.io/#how-to-use
 
 var app = require('http').createServer(handler)
-    , io = require('socket.io').listen(app)
-    , fs = require('fs')
-    , exec = require('child_process').exec
+	, io = require('socket.io').listen(app)
+	, fs = require('fs')
+	, exec = require('child_process').exec
 	, monitor = require('./service-monitor');
 
 app.listen(8005);
@@ -21,38 +21,30 @@ function handler (req, res) {
     });
 }
 
-var count = 0;
-setInterval(function() {
-	monitor.on('response', function(res) {
-		console.log('monitor response');
-		// console.log(res);
-	});
-	monitor.on('error', function(err) {
-		console.log('monitor error');
-		//console.log(err);
-	});
-	monitor.report({id: 'mucikan', 
-		name: 'Mucikan Chatting 2', 
-		desc: 'Developed by nak', 
-		url: 'http://mucikan.dangsam.com',
-		count: count++
-	});
-}, 5000);
+var service = {id: 'lisyoen', 
+	name: 'Simple Chatting', 
+	desc: 'Developed by lisyoen', 
+	url: 'http://lisyoen.dangsam.com',
+	count: 0};
+monitor.report(service);
+
+(function schedule() {
+	setTimeout(function() {
+		monitor.report(service, function() {
+			console.log('monitor response');
+			schedule();
+		});
+		console.log('users: ' + service.count);
+	}, 10000);
+})();
 
 io.sockets.on('connection', function (socket) {
-	// for index.html
-	socket.on('my other event', function (data) {
+	socket.on('client chat', function (data) {
 		console.log(data);
-		socket.emit('my_message', data);
-		socket.broadcast.emit("message", data);
+		socket.emit('server echo chat', data);
+		socket.broadcast.emit("server chat", data);
 	});
 	
-	socket.on('report', function (data) {
-		console.log('request report');
-		socket.emit('my_report', {users: 10, rooms: 3});
-	});
-	
-	// for admin.html
 	function echo_exec(cmd, callback) {
 		exec(cmd, function(err, stdout, stderr) {
 			if (err) {
@@ -75,4 +67,14 @@ io.sockets.on('connection', function (socket) {
 		console.log('restart');
 		echo_exec('forever restart chat.js', function() {});
 	});
+
+	socket.on('disconnect', function (socket) {
+		console.log('disconnect');
+		service.count--;
+		monitor.report(service);
+	});
+
+	service.count++;
+	monitor.report(service);
 });
+
