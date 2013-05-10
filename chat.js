@@ -22,7 +22,7 @@ function handler (req, res) {
 }
 
 var service = {id: 'mucikan', 
-	name: 'Knocking on heaven\'s door', 
+	name: 'Gentleman', 
 	desc: 'Developed by nak', 
 	url: 'http://chat.dangsam.com/mucikan',
 	count: 0};
