@@ -22,7 +22,7 @@ function handler (req, res) {
 }
 
 var service = {id: 'lisyoen', 
-	name: 'Knocking on heaven's door', 
+	name: 'Knocking on heaven\'s door', 
 	desc: 'Developed by nak', 
 	url: 'http://lisyoen.dangsam.com',
 	count: 0};
