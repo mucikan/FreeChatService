@@ -24,7 +24,7 @@ function handler (req, res) {
 var service = {id: 'mucikan', 
 	name: 'Knocking on heaven\'s door', 
 	desc: 'Developed by nak', 
-	url: 'http://lisyoen.dangsam.com',
+	url: 'http://chat.dangsam.com/mucikan',
 	count: 0};
 monitor.report(service);
 
