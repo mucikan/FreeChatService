@@ -24,7 +24,7 @@ function handler (req, res) {
 var service = {id: 'mucikan', 
 	name: 'Gentleman', 
 	desc: 'Developed by nak', 
-	url: 'http://chat.dangsam.com/mucikan',
+	url: 'http://free.dangsam.com/mucikan',
 	count: 0};
 monitor.report(service);
 
